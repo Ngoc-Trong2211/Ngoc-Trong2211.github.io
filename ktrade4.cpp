@@ -266,24 +266,34 @@ void NhapDanhSachMatHang(vector<MatHang *> &danhSachMatHang) {
 }
 
 void InDanhSachMatHang(vector<MatHang *> &danhSachMatHang) {
+	cout << "------------------------------Danh sach mat hang------------------------------" << endl;
+	cout << left << setw(15) << "Ma hang" 
+		 << setw(15) << "Ten hang" 
+		 << setw(15) << "Nhom hang" 
+		 << setw(15) << "Gia ban" 
+		 << setw(15) << "So luong" << endl;
   for (MatHang *matHang : danhSachMatHang) {
-    cout << "Ma hang: " << matHang->GetMaHang() << endl;
-    cout << "Ten hang: " << matHang->GetTenHang() << endl;
-    cout << "Nhom hang: " << matHang->GetNhomHang() << endl;
-    cout << "Gia ban: " << matHang->GetGiaBan() << endl;
-    cout << "So luong: " << matHang->GetSoLuong() << endl;
-    cout << endl;
+    cout << setw(15) << matHang->GetMaHang() 
+		 << setw(15) << matHang->GetTenHang() 
+		 << setw(15) << matHang->GetNhomHang()
+		 << setw(15) << matHang->GetGiaBan()  
+		 << setw(15) << matHang->GetSoLuong() << endl;
   }
 }
 
 void InDanhSachNhanVien(vector<NhanVienBanHang *> &danhSachNhanVien) {
+	cout << endl << "------------------------------Danh sach nhan vien------------------------------" << endl;
+	cout << left << setw(15) << "MaNV" 
+		 << setw(15) << "Ho ten" 
+		 << setw(15) << "Dia chi" 
+		 << setw(15) << "So DT" 
+		 << setw(15) << "Ngay ky hop dong" << endl;
   for (NhanVienBanHang *nhanVien : danhSachNhanVien) {
-    cout << "Ma NV: " << nhanVien->GetMaNV() << endl;
-    cout << "Ho ten: " << nhanVien->GetHoTen() << endl;
-    cout << "Dia chi: " << nhanVien->GetDiaChi() << endl;
-    cout << "So DT: " << nhanVien->GetSoDT() << endl;
-    cout << "Ngay ky hop dong: " << nhanVien->GetNgayKyHopDong() << endl;
-    cout << endl;
+    cout << setw(15) << nhanVien->GetMaNV()  
+		 << setw(15) << nhanVien->GetHoTen() 
+		 << setw(15) << nhanVien->GetDiaChi()
+		 << setw(15) << nhanVien->GetSoDT()  
+		 << setw(15) << nhanVien->GetNgayKyHopDong() << endl;
   }
 }
 
@@ -353,14 +363,6 @@ void LapDanhSachBanHang(vector<NhanVienBanHang *> &danhSachNhanVien, vector<MatH
   }
 }
 
-void InDanhSachBangDanhSachBanHang(vector<BangDanhSachBanHang *> &danhSachBangDanhSachBanHang) {
-  for (BangDanhSachBanHang *bangDanhSachBanHang : danhSachBangDanhSachBanHang) {
-    cout << "Ma NV: " << bangDanhSachBanHang->GetMaNV() << endl;
-    cout << "Ma hang: " << bangDanhSachBanHang->GetMaHang() << endl;
-    cout << "So luong: " << bangDanhSachBanHang->GetSoLuong() << endl;
-    cout << endl;
-  }
-}
 
 void TinhDoanhThuChoMoiNhanVien(vector<BangDanhSachBanHang *> &danhSachBangDanhSachBanHang, vector<NhanVienBanHang *> &danhSachNhanVien, vector<MatHang *> &danhSachMatHang) {
   vector<int> danhSachDoanhThu;
@@ -385,17 +387,15 @@ void TinhDoanhThuChoMoiNhanVien(vector<BangDanhSachBanHang *> &danhSachBangDanhS
     if (nhanVien != NULL && matHang != NULL) {
       float doanhThu = bangDanhSachBanHang->GetSoLuong() * matHang->GetGiaBan();
       danhSachDoanhThu.push_back(doanhThu);
-
-      cout << "Doanh thu: " << nhanVien->GetHoTen() << ": " << doanhThu << endl;
     }
   }
 
-  float totalRevenue = 0;
+  float tongdt = 0;
   for (float doanhThu : danhSachDoanhThu) {
-    totalRevenue += doanhThu;
+    tongdt += doanhThu;
   }
 
-  cout << "Tang doanh thu: " << totalRevenue << endl;
+  cout << endl << "Tong doanh thu: " << tongdt << endl;
 }
 
 int main() {
@@ -410,7 +410,6 @@ int main() {
 
   InDanhSachMatHang(danhSachMatHang);
   InDanhSachNhanVien(danhSachNhanVien);
-  InDanhSachBangDanhSachBanHang(danhSachBangDanhSachBanHang);
 
   TinhDoanhThuChoMoiNhanVien(danhSachBangDanhSachBanHang, danhSachNhanVien, danhSachMatHang);
 
